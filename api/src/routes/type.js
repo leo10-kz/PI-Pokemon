@@ -10,9 +10,12 @@ router.get('/', async (req, res, next) =>{
     try {
      const tipos = await axios.get('https://pokeapi.co/api/v2/type')
      let tipoPokemon  = tipos.data.results
-    
+     let psj = tipoPokemon.map(t => {return {nombre:t.name}})
+     const tiposPjs = await Type.bulkCreate(psj)
+     
+     res.json(tiposPjs)
  } catch (error) {
-     next(error)
+     next(error);
  }
 })
 

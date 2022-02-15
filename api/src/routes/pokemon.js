@@ -33,11 +33,12 @@ router.get("/", async (req, res, next) => {
     } else {
       try {
         let pokeApi = await axios.get(
-            "https://pokeapi.co/api/v2/pokemon?offset=0&limit=40%22"
+          "https://pokeapi.co/api/v2/pokemon?offset=0&limit=40%22"
           );
           let datos = pokeApi.data.results;
+          let pokemonBd = await Pokemon.findAll({include:Type});
           let psj = [];
-          for (let i = 0; i < datos.length; i++) {
+           for (let i = 0; i < datos.length; i++) {
             let dato = await axios.get(datos[i].url);
             psj.push({
               id: dato.data.id,
@@ -45,10 +46,9 @@ router.get("/", async (req, res, next) => {
               image: dato.data.sprites.front_default,
               tipo: dato.data.types.map((t) => t.type.name),
             });
-          }
-          let pokemonBd = await Pokemon.findAll({include:Type});
+          } 
     
-          Promise.all([psj, pokemonBd]).then((pokemones) => {
+           Promise.all([psj, pokemonBd]).then((pokemones) => {
             const [psj, pokemonBd] = pokemones;
             let evolucion = [...psj, ...pokemonBd];
             res.json(evolucion);
@@ -61,7 +61,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/", async (req, res) => {
-  const { nombre, vida, fuerza, defenza, velocidad, altura, peso } = req.body;
+  const { nombre, vida, fuerza, defenza, velocidad, altura, peso,tipos} = req.body;
   const pokedex = await Pokemon.create({
     nombre: nombre,
     vida: +vida,
@@ -69,9 +69,10 @@ router.post("/", async (req, res) => {
     defenza: +defenza,
     velocidad: +velocidad,
     altura: +altura,
-    peso: +peso,
+    peso: +peso,  
   });
-  res.json(pokedex);
+  await pokedex.addType(tipos);
+  res.status(200).json(pokedex);
 });
 
 router.get("/:id",async (req, res, next) => {
