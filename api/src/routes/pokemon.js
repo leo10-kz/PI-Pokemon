@@ -21,8 +21,8 @@ router.get("/", async (req, res, next) => {
             let poke = [{
             id:pokeName.data.id,
             name:pokeName.data.name,
-            image: pokeName.data.sprites.front_default,
-            
+            image: pokeName.data.sprites.other.dream_world.front_default,
+            tipo: pokeName.data.types.map((t) => t.type.name)
         }]
          res.status(200).json(poke);
       }
@@ -43,7 +43,7 @@ router.get("/", async (req, res, next) => {
             psj.push({
               id: dato.data.id,
               name: dato.data.name,
-              image: dato.data.sprites.front_default,
+              image: dato.data.sprites.other.dream_world.front_default,
               tipo: dato.data.types.map((t) => t.type.name),
             });
           } 
@@ -75,6 +75,7 @@ router.post("/", async (req, res) => {
   res.status(200).json(pokedex);
 });
 
+
 router.get("/:id",async (req, res, next) => {
   const{ id } =req.params;
   try {
@@ -86,7 +87,7 @@ router.get("/:id",async (req, res, next) => {
     let pokeIdInfo ={
         id:pokeId.data.id,
         name:pokeId.data.name,
-        image:pokeId.data.sprites.front_default,
+        image: pokeId.data.sprites.other.dream_world.front_default,
         tipos:pokeId.data.types.map((t)=>t.type.name),
         vida:pokeId.data.stats[0].base_stat,
         fuerza:pokeId.data.stats[1].base_stat,
