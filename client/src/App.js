@@ -18,7 +18,7 @@ function App() {
   useEffect(() =>{
     let dispachar = async () =>{
       await dispatch(get_pokemons())
-      dispatch(get_pages())
+     dispatch(get_pages())
     }
     dispachar();
   },[dispatch])

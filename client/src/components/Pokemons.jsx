@@ -18,7 +18,8 @@ const Pokemons = () => {
                id={po.id}
                name={po.name}
                image={po.image}
-               tipo={po.tipo}
+               types={po.types}
+               fuerza={po.fuerza}
                />
            </div>)
        })}

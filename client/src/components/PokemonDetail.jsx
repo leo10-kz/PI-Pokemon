@@ -8,7 +8,7 @@ const PokemonDetail = () => {
     const pokeId = useSelector(state => state.pokemonId);
     
     const dispatch = useDispatch();
-    const tipos = pokeId.tipos 
+    const types = pokeId.types 
    
     useEffect(()=>{
        dispatch(get_pokemons_id(id))
@@ -20,7 +20,7 @@ const PokemonDetail = () => {
      <p>{pokeId.id}</p>
      <h2>{pokeId.name}</h2>
      <img src={pokeId.image} alt="" /> 
-     {tipos && tipos.map((t,i) => (<p key={i}>{t}</p>))}
+     {types && types.map((t,i) => (<p key={i}>{t}</p>))}
      <div>
          <h3>Estadisticas</h3>
          <p>Vida: {pokeId.vida}</p>
