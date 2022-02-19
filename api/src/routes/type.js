@@ -8,12 +8,17 @@ const router = Router();
 router.get('/', async (req, res, next) =>{
     
     try {
-     const tipos = await axios.get('https://pokeapi.co/api/v2/type')
-     let tipoPokemon  = tipos.data.results
-     let psj = tipoPokemon.map(t => {return {nombre:t.name}})
-     const tiposPjs = await Type.bulkCreate(psj)
+     const types = await axios.get('https://pokeapi.co/api/v2/type')
+     let tipoPokemon  = types.data.results;
      
-     res.json(tiposPjs)
+     for( t of tipoPokemon) {
+        const existe = await Type.findOne({where: { name: t.name }})
+        if(existe) return res.json(await Type.findAll())
+        await Type.create({ name: t.name})
+    }
+
+    res.json(await Type.findAll());
+
  } catch (error) {
      next(error);
  }

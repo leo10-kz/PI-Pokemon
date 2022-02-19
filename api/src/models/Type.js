@@ -9,9 +9,9 @@ module.exports = (sequelize) => {
       primaryKey:true,
       autoIncrement:true
     },
-    nombre:{
+    name:{
         type:DataTypes.STRING,
-        
+        unique:true
     }
   });
 };
