@@ -9,6 +9,9 @@ export const ORDER_NAME = 'order_name';
 export const ORDER_FUERZA = 'order_fuerza'; 
 export const ORDER_TYPE = 'order_type'
 export const GET_TYPES = 'get_types'
+export const ORDER_CREATE_BY = 'order_create_by'; 
+export const ADD_POKEMONS = 'add_pokemons'
+
 
 export const get_pokemons = () => async (dispatch) =>{
  let info = await axios.get('http://localhost:3001/pokemons')
@@ -51,3 +54,23 @@ export const get_pokemons_name = (name) => async(dispatch) =>{
    let { data } = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
    return dispatch({type:GET_POKEMONS_NAME, payload:data})
 }
+
+export const order_create_by = (arg) =>{
+   return ({type:ORDER_CREATE_BY, payload: arg})
+}
+
+export const add_pokemons = (pokemon) =>async (dispatch) => {
+   const { name,vida, fuerza, defenza, velocidad, altura, peso, types } = pokemon;
+   const { data } = await axios.post('http://localhost:3001/pokemons',{ name,vida, fuerza, defenza, velocidad, altura, peso, types })
+   return dispatch({type:ADD_POKEMONS, payload:data})
+}
+
+
+/* nombre: "",
+vida:0,
+fuerza:0,
+defenza:0,
+velocidad:0,
+altura:0,
+peso:0,
+tipos:[], */

@@ -1,5 +1,5 @@
 import { GET_POKEMONS, GET_POKEMONS_ID,GET_PAGES,
-    SET_CURRENT, ORDER_NAME, ORDER_FUERZA, GET_TYPES, ORDER_TYPE, GET_POKEMONS_NAME } from "./actions";
+    SET_CURRENT, ORDER_NAME, ORDER_FUERZA, GET_TYPES, ORDER_TYPE, GET_POKEMONS_NAME, ORDER_CREATE_BY, ADD_POKEMONS } from "./actions";
 
 
 const intialState = {
@@ -81,6 +81,20 @@ switch (action.type) {
         ...state,
         pokemonsOrderName: orderFuerza
        }            
+      
+       case ORDER_CREATE_BY:
+       let filter = state.pokemons.filter(po => action.payload === 'creado'?
+        po.id.length > 5 :  typeof po.id === "number")    
+       
+       return{
+           ...state,
+            pokemonsOrderName:filter
+           }
+        case ADD_POKEMONS:
+            return{
+                ...state,
+                pokemonsOrderName:[...state.pokemonsOrderName,action.payload]
+            }
 
         case GET_PAGES:
                

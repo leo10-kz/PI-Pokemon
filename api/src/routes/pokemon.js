@@ -17,6 +17,7 @@ router.get("/", async (req, res, next) => {
   let arrDb = []
   for (let i = 0; i < pokebd.length; i++) {
       arrDb.push({
+        id:pokebd[i].id,
         name: pokebd[i].name,
         //image: pokebd.sprites.other.dream_world.front_default,
         types: pokebd[i].types.map((t) => t.name),

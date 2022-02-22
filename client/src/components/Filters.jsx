@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { get_pages, order_fuerza, order_name, order_type } from '../redux/actions';
+import { get_pages, order_create_by, order_fuerza, order_name, order_type } from '../redux/actions';
 
 const Filters = () => {
    const dispatch = useDispatch()
@@ -24,6 +24,11 @@ const Filters = () => {
     dispatch(order_type(e.target.value))
     dispatch(get_pages())
  }
+
+const click3 = (e) =>{
+ dispatch(order_create_by(e.target.value));
+ dispatch(get_pages())
+}
  
   return (
   
@@ -42,6 +47,10 @@ const Filters = () => {
         {tipos.map((t, i) => (<option key={i}>{t.name}</option>))}
       </select>
 
+      <select name="orderCreate" onChange={(e) => click3(e)}>
+          <option value="existe">Api</option>
+          <option value="creado">Data Base</option>
+      </select>
     </main>
   )
 }
