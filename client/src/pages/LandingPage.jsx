@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { Gopage, Btn } from '../css-componentes/Landing';
 
 
 const LandingPage = () => {
   return (
    <div>
-       <h1>Pokemon Api</h1>
+      <Gopage>
+        
         <Link to='/home'>
-           <button type='submit'>Vamos</button>
+           <Btn type='submit'>GO</Btn>
         </Link>
+      </Gopage>
    </div>
   )
 }

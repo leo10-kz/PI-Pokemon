@@ -31,10 +31,10 @@ const PaginationBar = () => {
 
   return (    
    <div>
+     {current > 0 && <button onClick={prev}>prev</button>}  
      {pages.map((p,i)  => {
        return(<button onClick={() => onClick(i)} key={i}>{i+1}</button>)
       })}
-   {current > 0 && <button onClick={prev}>prev</button>}  
   {current < pages.length-1 && <button onClick={next}>next</button>}
    </div>
   )

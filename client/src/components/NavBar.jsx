@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { get_pages, get_pokemons_name } from '../redux/actions';
+import { Navegacion, Contenedor } from '../css-componentes/Nav';
+
 
 const NavBar = () => {
 
@@ -25,17 +27,20 @@ const onSubmit = async (e) =>{
  }
 
   return (
-   <div>
-       <nav>
-           <Link to='/add'>Create</Link>
-           <Link to='/home'>Home</Link>
+   <Contenedor>
+       <Navegacion>
+           <div>
            <form onSubmit={e => onSubmit(e)}>
                <input type="text" name='nameIn' value={input.nameIn} onChange={handleInputChange} placeholder='Search by name...'/>
-               <button type='submit'>buscar</button>
+               <button type='submit'></button>
            </form>
-    
-       </nav>
-   </div>
+           </div>
+           <div className='links'>
+           <Link to='/add'>Create</Link>
+           <Link to='/home'>Home</Link>
+           </div>
+       </Navegacion>
+   </Contenedor>
   )
 }
 

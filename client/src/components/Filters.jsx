@@ -2,6 +2,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { get_pages, order_create_by, order_fuerza, order_name, order_type } from '../redux/actions';
+import { Main } from '../css-componentes/Filters';
+
 
 const Filters = () => {
    const dispatch = useDispatch()
@@ -32,7 +34,7 @@ const click3 = (e) =>{
  
   return (
   
-    <main>
+    <Main>
       <select name="orderName" onChange={(e) => click(e)}>
           <option value="ascendente">A-Z</option>
           <option value="descendente">Z-A</option>
@@ -51,7 +53,7 @@ const click3 = (e) =>{
           <option value="existe">Api</option>
           <option value="creado">Data Base</option>
       </select>
-    </main>
+    </Main>
   )
 }
 

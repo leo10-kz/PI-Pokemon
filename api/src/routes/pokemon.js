@@ -62,7 +62,7 @@ router.post("/", async (req, res) => {
     defenza: +defenza,
     velocidad: +velocidad,
     altura: +altura,
-    peso: +peso,
+    peso: +peso
   });
   await pokedex.addType(types);
   res.status(200).json(pokedex);
