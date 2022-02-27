@@ -72,8 +72,32 @@ router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
     if (id.length > 5) {
-      const pokeBdId = await Pokemon.findByPk(id);
-      res.status(200).json(pokeBdId);
+      
+      const pokeBdId = await Pokemon.findOne(
+        {
+          where:{id:id},
+          include: {
+           model: Type,//[{name:bug},{name:algo}] [algo, bug]
+           attributes: ["name"],
+           through: { attributes: [] }
+          }, 
+        },
+      );
+     let obj = {
+        id:pokeBdId.id,
+        name: pokeBdId.name,
+        //image: pokebd.sprites.other.dream_world.front_default,
+        types: pokeBdId.types.map((t) => t.name),
+        fuerza: pokeBdId.fuerza,
+        vida:pokeBdId.vida,
+        defenza:pokeBdId.defenza,
+        velocidad:pokeBdId.velocidad,
+        altura:pokeBdId.altura,
+        peso:pokeBdId.peso,
+      }
+        
+      
+      res.status(200).json(obj);
     } else {
       const pokeId = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
       let pokeIdInfo = {

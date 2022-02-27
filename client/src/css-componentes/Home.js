@@ -1,22 +1,31 @@
 import styled from 'styled-components';
 
-export const Contenedor = styled.body`
-display: flex;
-min-width: 100vh;
 
+export const Contenedor = styled.div`
+ background-image: linear-gradient(to bottom, #bb0008, #bd651b, #be9853, #c8c399, #e5e7e2);
+ background-size: cover;
+ //height:100;
+ 
+ .lateral{
+    display: flex;
+    flex-direction: column;
+ }
+
+ h1{
+    margin: 0;
+    padding: 40px;
+ }
+
+ 
+ 
 `;
 
 export const Principal = styled.main`
-width: 85%;
-display: flex;
-`;
+ 
+`; 
 
 export const Sidebar = styled.nav`
-width: 15%;
 display: flex;
-div{
-   position: relative;
-   top: 40px;
-   left: 20px;
-}
+position: relative;
+bottom: 50px;
 `;

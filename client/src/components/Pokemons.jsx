@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import PokemonCard from './PokemonCard'
-import Gift from '.././assets/spin.gif'
 import { Conteiner } from '../css-componentes/Conteiner'
+import Loading from './Loading'
 
 const Pokemons = () => {
 
@@ -12,7 +12,7 @@ const Pokemons = () => {
   return (
     <Conteiner>
        { (!pages.length)?
-         <div><img src={Gift} alt="" /></div>: 
+         <Loading />: 
          pages[current].map(po =>{
            return(<div key={po.id}>
                <PokemonCard

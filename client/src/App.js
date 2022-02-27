@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch } from 'react-redux';
-import { get_pages, get_pokemons } from './redux/actions';
+import { get_pages, get_pokemons, get_types } from './redux/actions';
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import LandingPage from './pages/LandingPage.jsx'
@@ -19,6 +19,7 @@ function App() {
     let dispachar = async () =>{
       await dispatch(get_pokemons())
      dispatch(get_pages())
+     dispatch(get_types())
     }
     dispachar();
   },[dispatch])

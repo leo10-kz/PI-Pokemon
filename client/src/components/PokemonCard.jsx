@@ -1,15 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, Title, Pie, Image } from "../css-componentes/Card";
+import { Links } from "../css-componentes/Compartidos";
+
 
 const PokemonCard = ({ id, name, image, types, fuerza }) => {
   console.log(types);
   return (
     <Card>
+
+        <Links to={`/pokemon/${id}`}>
       <Title>
-        <Link to={`/pokemon/${id}`}>
-          <h1>{name}</h1>
-        </Link>
+          <h2>{name}</h2>
       </Title>
       <Image>
       <img src={image} alt="" />
@@ -26,6 +27,7 @@ const PokemonCard = ({ id, name, image, types, fuerza }) => {
           <span>{fuerza}</span>
         </div>
       </Pie>
+          </Links>
     </Card>
   );
 };

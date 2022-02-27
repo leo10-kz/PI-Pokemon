@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { set_current } from '../redux/actions';
+import { Boton, NextPrev, Pag } from '../css-componentes/Pagination';
+import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
 
 const PaginationBar = () => {
   const pages =  useSelector(state => state.pages);
@@ -30,13 +32,13 @@ const PaginationBar = () => {
   
 
   return (    
-   <div>
-     {current > 0 && <button onClick={prev}>prev</button>}  
+   <Pag>
+     {current > 0 && <NextPrev onClick={prev}><LeftCircleOutlined /></NextPrev>}  
      {pages.map((p,i)  => {
-       return(<button onClick={() => onClick(i)} key={i}>{i+1}</button>)
+       return(<Boton onClick={() => onClick(i)} key={i}>{i+1}</Boton>)
       })}
-  {current < pages.length-1 && <button onClick={next}>next</button>}
-   </div>
+  {current < pages.length-1 && <NextPrev onClick={next}><RightCircleOutlined /></NextPrev>}
+   </Pag>
   )
 }
 

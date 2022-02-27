@@ -1,19 +1,59 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Created from "../assets/crated.png";
-import { add_pokemons, get_pages } from "../redux/actions";
+import Created from "../assets/9da071b861b25e48cb28e270332c0234.png";
+import { add_pokemons, get_pages, get_pokemons } from "../redux/actions";
+import { Contenedor, Columna,  Div, Linkhome  } from "../css-componentes/Created";
+import { SwapLeftOutlined } from '@ant-design/icons';
+
+
 
 const AddPokemon = () => {
   const tipos = useSelector((state) => state.pokeTypes);
+  const pokemons = useSelector((state) => state.pokemonsOrder.map(p => p.name));
   const dispatch = useDispatch();
+  
  
   const validation = (inputs) => {
    let errors = {};
+   let reg = /^[a-zA-Z\s]*$/; 
 
     if (!inputs.name) {
-      errors.name = "Es necesario un nombre";
+      errors.name = "Este campo es obligatorio";
     }
+    
+     if(pokemons.indexOf(inputs.name) !== -1){
+       errors.name = 'Ya existe un Pokemon con este nombre';
+     }
+
+     if (!reg.test(inputs.name)) {
+       errors.name = 'No se  permiten numeros ni caracteres'
+     }
+
+     if (inputs.vida < 1 || inputs.vida > 150) {
+       errors.vida = 'Sus valores de vida deben ir de 1 a 150'
+     }
+
+     if (inputs.fuerza < 1 || inputs.fuerza > 200) {
+       errors.fuerza = 'Sus valores de fuerza deben ir de 1 a 200'
+     }
+
+     if (inputs.defenza < 1 || inputs.defenza > 200) {
+       errors.defenza = 'Sus valores de defenza deben ir de 1 a 200'
+     }
+
+     if (inputs.velocidad < 1 || inputs.velocidad > 100) {
+       errors.velocidad = 'Sus valores de velocidad deben ir de 1 a 100'
+     }
+
+     if (inputs.peso < 1 || inputs.peso > 1500) {
+       errors.peso = 'Sus valores de peso debe ir de 1 a 1500'
+     }
      
+     if (inputs.altura < 1 || inputs.altura > 80) {
+       errors.altura = 'Sus valore de altura deben ir de 1 a 80'
+     }
+
+
       return errors
   };
 
@@ -36,7 +76,10 @@ const AddPokemon = () => {
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    setErrors(validation(inputs))
+    setErrors(validation({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    }))
   };
 
   const handleInputCheck = (e) => {
@@ -51,19 +94,33 @@ const AddPokemon = () => {
     }
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    dispatch(add_pokemons(inputs));
-    dispatch(get_pages());
+   dispatch(add_pokemons(inputs));
+   dispatch(get_pages())
+   dispatch(get_pokemons())
+   setInputs({
+     name: "",
+     vida: 0,
+     fuerza: 0,
+     defenza: 0,
+     velocidad: 0,
+     altura: 0,
+     peso: 0,
+     types: [],
+    }) 
+
   };
 
 
   return (
-    <div>
+    <Div>
+      <Linkhome to='/home'><SwapLeftOutlined/></Linkhome>
+      <img src={Created} alt="" />
       <form onSubmit={submit}>
-        <img src={Created} alt="" />
-
-        <label htmlFor="nombre">Nombre:</label>
+        <Contenedor >
+        <Columna  className="col_one">
+        <label htmlFor="nombre">Nombre</label>
         <input
           type="text"
           name="name"
@@ -71,23 +128,25 @@ const AddPokemon = () => {
           onChange={handleInputChange}
         />
          {errors.name && <p>{errors.name}</p>}
-        
-        <label htmlFor="vida">Vida:</label>
+        <br />
+        <label htmlFor="vida">Vida</label>
         <input
           type="number"
           name="vida"
           value={inputs.vida}
           onChange={handleInputChange}
         />
-        {errors.vida && <p>{errors.vida}</p> }
-        <label htmlFor="fuerza">Fuerza:</label>
+       {inputs.vida.length &&  errors.vida && <p>{errors.vida}</p>}
+        <br />
+        <label htmlFor="fuerza">Fuerza</label>
         <input
           type="number"
           name="fuerza"
           value={inputs.fuerza}
           onChange={handleInputChange}
         />
-
+        {inputs.fuerza.length &&  errors.fuerza && <p>{errors.fuerza}</p>}
+        <br />
         <label htmlFor="defenza">Defenza</label>
         <input
           type="number"
@@ -95,6 +154,8 @@ const AddPokemon = () => {
           value={inputs.defenza}
           onChange={handleInputChange}
         />
+        {inputs.defenza.length &&  errors.defenza && <p>{errors.defenza}</p>}
+        <br />
         <label htmlFor="velocidad">Velocidad</label>
         <input
           type="number"
@@ -102,6 +163,8 @@ const AddPokemon = () => {
           value={inputs.velocidad}
           onChange={handleInputChange}
         />
+        {inputs.velocidad.length &&  errors.velocidad && <p>{errors.velocidad}</p>}
+        <br />
         <label htmlFor="altura">Altura</label>
         <input
           type="number"
@@ -109,6 +172,7 @@ const AddPokemon = () => {
           value={inputs.altura}
           onChange={handleInputChange}
         />
+        {inputs.altura.length &&  errors.altura && <p>{errors.altura}</p>}
         <label htmlFor="peso">Peso</label>
         <input
           type="number"
@@ -116,7 +180,13 @@ const AddPokemon = () => {
           value={inputs.peso}
           onChange={handleInputChange}
         />
-        <label htmlFor="tipos">Types:</label>
+        {inputs.peso.length &&  errors.peso && <p>{errors.peso}</p>}
+        <br />
+        <button type="submit">Crear</button>
+        </Columna> 
+        <Columna >
+        <div className="col">
+        
         {tipos.map((t) => (
           <p>
             {t.name}{" "}
@@ -129,9 +199,11 @@ const AddPokemon = () => {
             />
           </p>
         ))}
-        <button type="submit">Crear</button>
+         </div>
+        </Columna> 
+        </Contenedor>
       </form>
-    </div>
+    </Div>
   );
 };
 

@@ -1,31 +1,28 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Filters from "../components/Filters";
-import NavBar from "../components/NavBar";
-import PaginationBar from "../components/PaginationBar";
+import React from "react";
+import { useSelector } from "react-redux";
 import Pokemons from "../components/Pokemons";
-import { get_types } from "../redux/actions";
-import { Principal, Sidebar,Contenedor } from "../css-componentes/Home";
+import LateralBar from "../components/LateralBar";
+import PaginationBar from '../components/PaginationBar'
+import Direccion from "../components/Direccion";
+import { Principal, Sidebar, Contenedor } from "../css-componentes/Home";
+
 
 const Home = () => {
   const pages = useSelector((state) => state.pages);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(get_types());
-  });
+  
 
   return (
     <Contenedor>
+      <div className="lateral">
       <Sidebar>
-        <div>
-        {pages.length ? <PaginationBar /> : null}
-        {pages.length ? <NavBar /> : null}
-        {pages.length ? <Filters /> : null}
-        </div>
+        <div>{pages.length ? <LateralBar /> : null}</div>
       </Sidebar>
+      <Direccion />
       <Principal>
+      <PaginationBar />
         <Pokemons />
       </Principal>
+      </div>
     </Contenedor>
   );
 };
