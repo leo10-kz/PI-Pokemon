@@ -15,7 +15,7 @@ export const ORDERING = 'ordering'
 export const get_pokemons = () => async (dispatch) =>{
 
    try {
-      let info = await axios.get('http://localhost:3001/pokemons')
+      let info = await axios.get('/pokemons')
         return dispatch({type:GET_POKEMONS, payload:info.data}); 
    } catch (error) {
       console.log(error);
@@ -25,7 +25,7 @@ export const get_pokemons = () => async (dispatch) =>{
 export const get_pokemons_id = (id) => async (dispatch) =>{
 
    try {
-      let info = await axios.get(`http://localhost:3001/pokemons/${id}`)
+      let info = await axios.get(`/pokemons/${id}`)
       return dispatch({type:GET_POKEMONS_ID, payload:info.data})
       
    } catch (error) {
@@ -37,7 +37,7 @@ export const get_pokemons_id = (id) => async (dispatch) =>{
 export const get_types = () => async (dispatch) =>{
 
   try {
-     let info = await axios.get('http://localhost:3001/types');
+     let info = await axios.get('/types');
      return dispatch({type:GET_TYPES, payload:info.data})
      
   } catch (error) {
@@ -67,7 +67,7 @@ export const filter_type = (arg) =>{
 export const get_pokemons_name = (name) => async(dispatch) =>{
 
   try {
-     var rest = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+     var rest = await axios.get(`/pokemons?name=${name}`)
      
   } catch (error) {
      console.log(error);
@@ -89,7 +89,7 @@ export const add_pokemons = (pokemon) =>async (dispatch) => {
 
    try {
       const { name,vida, fuerza, defenza, velocidad, altura, peso, types } = pokemon;
-      var rest = await axios.post('http://localhost:3001/pokemons',{ name,vida, fuerza, defenza, velocidad, altura, peso, types })
+      var rest = await axios.post('/pokemons',{ name,vida, fuerza, defenza, velocidad, altura, peso, types })
       
    } catch (error) {
       console.log(error);
