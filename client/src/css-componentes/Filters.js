@@ -3,13 +3,21 @@ import styled from "styled-components";
 export const Main = styled.main`
 margin-top: 50px;
 select{
+    text-align: center;
+    font-weight: bold;
+    color: black;
     float: left;
     font-size: 17px;
     margin: 20px ;
     padding: 5px 20px;
-    border: none;
-    border-radius: 14px;
-    background-color:#90be6d ;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #FF0000;
+}
+
+option{
+    background-color: white;
+    
 }
 `;
 

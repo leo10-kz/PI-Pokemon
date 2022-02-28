@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Div = styled.div`
 width: 100vw;
 min-height: 100vh;
-background-color: #f8961e;
+background-image: linear-gradient( #e63946 85px, #f1faee 20px);
 
 img{
     width: 40%;
@@ -30,20 +30,24 @@ flex: 1;
 justify-content: center;
 position: relative;
 align-items: center;
+background-color: #808080;
+height: 80vh;
+border-radius: 15px;
 
   p{
-    position: relative;
-    right: 160px;
+    //position: relative;
+    //right: 80px;
     color:red;
     font-size: 18px;
+    font-weight: bold;
   }
 
   input{
       width: 50%;
-      margin: 10px;
+      margin: 8px;
       padding: 5px;
       border-radius: 10px;
-      border: 3px solid #2a9d8f;
+      border: 3px solid ;
   }
   label{
       float:right;
@@ -52,11 +56,19 @@ align-items: center;
       font-size: 20px;
   }
   button{
+      font-weight: bold;
       width: 20%;
       padding: 3px;
       margin-top: 10px;
+      background: linear-gradient( #e63946 10px, #f1faee 15px);
+      border-radius: 10px;
+      border: 2px solid;
+      
   }
   
+ button:hover{
+     background: linear-gradient( yellow 10px, #f1faee 15px);
+ }
 
   .col{
    display:flex;
@@ -66,6 +78,9 @@ align-items: center;
    justify-content: space-around;
    position: relative;
    left: 80px;
+   border: 3px solid;
+   border-radius:25px;
+   background-color: #e63946;
   }
   .col p{
       color: black;
@@ -75,17 +90,28 @@ align-items: center;
 `;
 
 export const Linkhome = styled(Link)`
+text-decoration: none;
 position: relative;
-   right: 400px;
-   bottom: 20px;
-   font-size: 30px;
-   height: 35px;
-   padding: 3px 5px 3px 2px;
-   background-color:#f94144;
-   border: 2px solid #43aa8b;
-   border-radius: 2rem 2rem;
-   color:  #43aa8b;
-`
+   right: 410px;
+   bottom: 40px;
+   height: 25px;
+   padding: 2px;
+   color:  black;
+
+   input{
+       cursor: pointer;
+       border: 2px solid;
+       border-radius: 1rem 1rem;
+       padding: 5px 10px;
+       font-weight: bold;
+       background-color:white ;
+       box-shadow: 2px 2px 2px gray;
+   }
+   input:hover{
+     background:linear-gradient( #e63946 10px, #f1faee 15px) ;
+     transform: scale(1.1);
+   }
+`;
 
 
 

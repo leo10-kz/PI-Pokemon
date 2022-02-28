@@ -1,26 +1,27 @@
 import styled from 'styled-components';
 
 export const Boton = styled.button`
-color: black;
-background-color:#f9c74f ;
-border: 1px solid #277da1;
-border-radius: 1rem 1rem;
+color:#f1faee;
+font-weight: bold;
+background-color:#FF0000;
+border: 1px solid black ;
+border-radius: 1rem ;
 letter-spacing: 2px;
 text-align: center;
 margin: 5px;
-padding: 3px 7px;
+padding: 7px 12px;
 `;
 
 export const NextPrev = styled.button`
-border: none;
-color: #f8961e;
+background-color: #f1faee;
+border: 2px solid black;
+border-radius: 1rem;
+color: #FF0000;
 margin-left: 5px;
 font-size: 25px;
 position: relative;
-top: 6px;
-:hover{
-    color:#277da1 ;
-}
+top: 5px;
+cursor: pointer;
 `;
 
 export const Pag = styled.div`

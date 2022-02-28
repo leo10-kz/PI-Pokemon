@@ -67,11 +67,16 @@ export const filter_type = (arg) =>{
 export const get_pokemons_name = (name) => async(dispatch) =>{
 
   try {
-     let { data } = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
-     return dispatch({type:GET_POKEMONS_NAME, payload:data})
+     var rest = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
      
   } catch (error) {
      console.log(error);
+  }finally{
+     if (rest) {
+      return dispatch({type:GET_POKEMONS_NAME, payload:rest.data})
+     }else{
+        return alert('Pokemon not found')
+     }
   }
 
 }
@@ -84,11 +89,17 @@ export const add_pokemons = (pokemon) =>async (dispatch) => {
 
    try {
       const { name,vida, fuerza, defenza, velocidad, altura, peso, types } = pokemon;
-      const { data } = await axios.post('http://localhost:3001/pokemons',{ name,vida, fuerza, defenza, velocidad, altura, peso, types })
-      return dispatch({type:ADD_POKEMONS, payload:data})
+      var rest = await axios.post('http://localhost:3001/pokemons',{ name,vida, fuerza, defenza, velocidad, altura, peso, types })
       
    } catch (error) {
       console.log(error);
+   }finally{
+      if(rest){ 
+         alert('pokemon Creado')  
+       return dispatch({type:ADD_POKEMONS, payload:rest.data})
+      }else{
+         alert(new Error())
+      }
    }
 }
 export const page_name = (arg) =>{

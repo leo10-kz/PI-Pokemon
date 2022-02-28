@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const Contenedor = styled.div`
- background-image: linear-gradient(to bottom, #bb0008, #bd651b, #be9853, #c8c399, #e5e7e2);
+ background-image: linear-gradient( #e63946 85px, #f1faee 20px);
  background-size: cover;
  //height:100;
  

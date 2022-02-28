@@ -16,11 +16,11 @@ const intialState = {
   pokemons: [],
   pokemonId: {},
   pokemonsOrder: [],
-  //resultBusqueda: [],
   pokeTypes: [],
   tipoName: "",
   pages: [],
   current: 0,
+  
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -30,6 +30,7 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         pokemons: action.payload,
         pokemonsOrder: action.payload,
+        
       };
 
     case GET_POKEMONS_ID:
@@ -41,7 +42,7 @@ const rootReducer = (state = intialState, action) => {
     case GET_POKEMONS_NAME:
       return {
         ...state,
-        pokemonsOrder: action.payload,
+        pokemonsOrder: [action.payload],
         current: 0,
       };
 
@@ -65,7 +66,7 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
         tipoName: action.payload,
-        pokemonsOrder: filtro.length ? filtro : [`${action.payload} Pokemons`] 
+        pokemonsOrder: filtro.length ? filtro : undefined
       };
 
     
@@ -130,7 +131,18 @@ const rootReducer = (state = intialState, action) => {
         }
 
         if (action.payload === 'all') {
-            orderPokemons = state.pokemons;
+          let pokeMio = state.pokemonsOrder.filter(p => p.id.length > 5 );
+          let pokeApi = state.pokemons.filter(p => typeof p.id === 'number');
+          let orderDefault = pokeApi.sort((a,b) =>{
+             if (a.id > b.id) {
+               return 1;
+             }
+             if(b.id > a.id){
+               return -1;
+             }
+             return 0;
+          })
+            orderPokemons = [...pokeMio,  ...orderDefault]
         }
        
      return{
@@ -141,7 +153,7 @@ const rootReducer = (state = intialState, action) => {
     case ADD_POKEMONS:
       return {
         ...state,
-        pokemonsOrder: [...state.pokemonsOrder, action.payload],
+       // pokemonsOrder: [...state.pokemonsOrder, action.payload],
       };
 
     case GET_PAGES:

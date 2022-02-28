@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Conteiner = styled.body`
 display: flex;
 min-width: 100vh;
-background-color:#f9c74f ;
+background-image: linear-gradient( #e63946 85px, #f1faee 20px);
 background-size: cover;
 min-height:100vh;
 `; 
@@ -19,7 +19,7 @@ div{
     top: 10px;
 }
 p, h2, img {
-    margin: 30px;
+    margin: 20px;
 }
 h2{
     font-size: 30px;
@@ -36,6 +36,12 @@ img{
     background-color:#97a97c;
     border: 2px solid;
     border-radius: 20px;
+    width: 60%;
+    transition: 1s;
+}
+img:hover{
+transform: scale(1.2);
+transition: 1s;
 }
 
 `;
@@ -73,7 +79,7 @@ div{
  .progreso span{
      display: flex;
      position: relative;
-     bottom: 10px;
+     bottom: 14px;
      right: 10px;
      height: 3VH;
      border-radius:5px;
@@ -96,9 +102,9 @@ div{
  .marron span {
      background-color: brown;
  }
- .naranja span{
+  .naranja span{
      background-color: orange;
- }
+ } 
 
 `;
 
@@ -109,10 +115,18 @@ div{
    left: 30px;
    font-size: 30px;
    height: 35px;
-   padding: 3px 5px 3px 2px;
-   background-color:#f94144;
-   border: 2px solid #43aa8b;
-   border-radius: 2rem 2rem;
-   color:  #43aa8b;
+   input{
+    cursor: pointer;
+       border: 2px solid;
+       border-radius: 1rem 1rem;
+       padding: 5px 10px;
+       font-weight: bold;
+       background-color:white ;
+       box-shadow: 2px 2px 2px gray;
+   }
+   input:hover{
+     background:linear-gradient( #e63946 10px, #f1faee 15px) ;
+     transform: scale(1.1);
+   }
  `;
  

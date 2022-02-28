@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { get_pokemons_id } from "../redux/actions";
 import { Conteiner, Detalles, Estadisticas, Linkshome } from "../css-componentes/Details";
-import { SwapLeftOutlined} from '@ant-design/icons';
+
 
 const PokemonDetail = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ console.log(types);
   return (
 
     <Conteiner>
-      <Linkshome to='/home'><SwapLeftOutlined /></Linkshome>
+      <Linkshome to='/home'><input type="submit" value='volver'/></Linkshome>
       <Detalles>
         <div>
           <p>{pokeId.id}</p>
@@ -49,7 +49,7 @@ console.log(types);
             <span style={{width: pokeId.altura}}>ALTURA:{pokeId.altura}</span>
           </div>
           <div className="progreso naranja">
-            <span style={{width: pokeId.peso}}>PESO:{pokeId.peso}</span>
+            <span style={{width: pokeId.peso < 400  ? pokeId.peso:null }}>PESO:{pokeId.peso}</span>
           </div>
         </div>
       </Estadisticas>

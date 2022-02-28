@@ -2,12 +2,18 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Linked = styled(Link)`
+font-weight: bold;
+text-align: center;
 text-decoration: none;
-background-color:#43aa8b ;
-padding: 10px;
-border:4px solid #90be6d;
+background-color:#f1faee ;
+padding: 10px 15px;
+border:4px solid #FF0000;
 border-radius: 1rem ;
-color:#f1faee ;
+color:black ;
+
+  :hover{
+     border:4px solid black;
+ }
 `;
 export const Conteiner = styled.div`
 margin-bottom: 20px;
@@ -16,12 +22,19 @@ align-items: center;
 justify-content: space-evenly;
 
 input{
-background-color:#43aa8b ;
-padding: 10px;
+font-weight:bold ;
+text-align: center;
+background-color:#f1faee;
+padding: 10px 15px;
 border-radius: 1rem ;
-color:#f1faee ; 
-border:4px solid #90be6d;
+color:black ; 
+border:4px solid #FF0000;
 cursor: pointer;
+}
+input:hover{
+    
+     border:4px solid black;
+ 
 }
 `;
 

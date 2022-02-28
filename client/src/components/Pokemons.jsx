@@ -6,13 +6,14 @@ import Loading from './Loading'
 
 const Pokemons = () => {
 
-   // const pokemones = useSelector(state => state.pokemons);
+   
    const pages = useSelector(state => state.pages);
    const current = useSelector(state =>state.current)
+  
   return (
     <Conteiner>
        { (!pages.length)?
-         <Loading />: 
+         <Loading /> :
          pages[current].map(po =>{
            return(<div key={po.id}>
                <PokemonCard

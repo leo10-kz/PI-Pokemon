@@ -4,20 +4,32 @@ export const Card = styled.div`
 width: 310px;
 height: 430px;
 overflow: hidden;
-border: 5px solid #ffb703;
+border: 3px solid ;
 border-radius: 15px;
 margin:20px;
 text-align: center;
+
 //font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
  p{
      font-size: 17px;
+     color: black;
+     
+ }
+ .tipo{
+     background-color: #abc4ff;
+     border-radius: 5px;
  }
  span{
      font-size: 20px;
+     color: black;
+     background-color:#e63946 ;
+     border: 1px solid;
+     border-radius: 5px;
  }
 
  h2{
      margin: 0;
+     color: black;
  }
 
 `;
@@ -29,25 +41,25 @@ align-items: center;
 justify-content: center;
 height: 50px;
 padding: 1px;
-border-bottom: 5px solid  #f9c74f ;
+border-bottom: 3px solid black ;
 border-radius: 10px 10px 0 0;
-background-color: #43aa8b;
+background-color: #FF0000;
 `;
 
 export const Pie = styled.footer`
- background: #90be6d;
+ background-color: #f1faee;
  display:flex;
  height: 100%;
  flex-wrap: row;
  flex-wrap: wrap;
  justify-content: space-around;
- border-top: 5px solid #f9c74f
+ border-top: 3px solid black
 `;
 
 export const Image = styled.div`
   height: 250px;
   display: flex;
-  background-color: #ced0cc ;
+  background-color: #808080;
       justify-content:center;
       align-items: center;
   img{

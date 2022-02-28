@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {  useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Created from "../assets/9da071b861b25e48cb28e270332c0234.png";
 import { add_pokemons, get_pages, get_pokemons } from "../redux/actions";
 import { Contenedor, Columna,  Div, Linkhome  } from "../css-componentes/Created";
-import { SwapLeftOutlined } from '@ant-design/icons';
+
 
 
 
@@ -11,6 +11,7 @@ const AddPokemon = () => {
   const tipos = useSelector((state) => state.pokeTypes);
   const pokemons = useSelector((state) => state.pokemonsOrder.map(p => p.name));
   const dispatch = useDispatch();
+  
   
  
   const validation = (inputs) => {
@@ -24,6 +25,8 @@ const AddPokemon = () => {
      if(pokemons.indexOf(inputs.name) !== -1){
        errors.name = 'Ya existe un Pokemon con este nombre';
      }
+
+     
 
      if (!reg.test(inputs.name)) {
        errors.name = 'No se  permiten numeros ni caracteres'
@@ -86,19 +89,19 @@ const AddPokemon = () => {
     if (e.target.checked === true) {
       inputs.types.push(e.target.value);
       setInputs({ ...inputs });
+      console.log(e.target.checked);
     } else {
       setInputs({
         ...inputs,
-        tipos: inputs.types.filter((t) => t !== e.target.value),
+        types: inputs.types.filter((t) => t !== e.target.value),
       });
     }
   };
 
   const submit = async (e) => {
     e.preventDefault();
-   dispatch(add_pokemons(inputs));
-   dispatch(get_pages())
-   dispatch(get_pokemons())
+   await dispatch(add_pokemons(inputs));
+   
    setInputs({
      name: "",
      vida: 0,
@@ -107,15 +110,23 @@ const AddPokemon = () => {
      velocidad: 0,
      altura: 0,
      peso: 0,
-     types: [],
+     types:[] ,
     }) 
-
+   await dispatch(get_pokemons())
+    dispatch(get_pages())
+    
   };
+
+  const buttonSubmit = useMemo(() => {
+    if(errors.name || inputs.name.length === 0 ) return true;
+    return false;
+  },[errors, inputs.name])
+
 
 
   return (
     <Div>
-      <Linkhome to='/home'><SwapLeftOutlined/></Linkhome>
+      <Linkhome to='/home'><input type="submit" value='volver' /></Linkhome>
       <img src={Created} alt="" />
       <form onSubmit={submit}>
         <Contenedor >
@@ -136,7 +147,7 @@ const AddPokemon = () => {
           value={inputs.vida}
           onChange={handleInputChange}
         />
-       {inputs.vida.length &&  errors.vida && <p>{errors.vida}</p>}
+       {inputs.vida.length &&  errors.vida ? <p>{errors.vida}</p>:null}
         <br />
         <label htmlFor="fuerza">Fuerza</label>
         <input
@@ -145,7 +156,7 @@ const AddPokemon = () => {
           value={inputs.fuerza}
           onChange={handleInputChange}
         />
-        {inputs.fuerza.length &&  errors.fuerza && <p>{errors.fuerza}</p>}
+        {inputs.fuerza.length && errors.fuerza ? <p>{errors.fuerza}</p>:null}
         <br />
         <label htmlFor="defenza">Defenza</label>
         <input
@@ -154,7 +165,7 @@ const AddPokemon = () => {
           value={inputs.defenza}
           onChange={handleInputChange}
         />
-        {inputs.defenza.length &&  errors.defenza && <p>{errors.defenza}</p>}
+        {inputs.defenza.length &&  errors.defenza ? <p>{errors.defenza}</p>:null}
         <br />
         <label htmlFor="velocidad">Velocidad</label>
         <input
@@ -163,7 +174,7 @@ const AddPokemon = () => {
           value={inputs.velocidad}
           onChange={handleInputChange}
         />
-        {inputs.velocidad.length &&  errors.velocidad && <p>{errors.velocidad}</p>}
+        {inputs.velocidad.length &&  errors.velocidad ? <p>{errors.velocidad}</p>:null}
         <br />
         <label htmlFor="altura">Altura</label>
         <input
@@ -172,7 +183,7 @@ const AddPokemon = () => {
           value={inputs.altura}
           onChange={handleInputChange}
         />
-        {inputs.altura.length &&  errors.altura && <p>{errors.altura}</p>}
+        {inputs.altura.length &&  errors.altura ? <p>{errors.altura}</p>:null}
         <label htmlFor="peso">Peso</label>
         <input
           type="number"
@@ -180,22 +191,22 @@ const AddPokemon = () => {
           value={inputs.peso}
           onChange={handleInputChange}
         />
-        {inputs.peso.length &&  errors.peso && <p>{errors.peso}</p>}
+        {inputs.peso.length &&  errors.peso ? <p>{errors.peso}</p>:null}
         <br />
-        <button type="submit">Crear</button>
+        <button type="submit" disabled={buttonSubmit}>Crear</button>
         </Columna> 
         <Columna >
         <div className="col">
         
         {tipos.map((t) => (
           <p>
-            {t.name}{" "}
+            {t.name}
             <input
               key={t.id}
               type="checkbox"
               name={t.name}
               value={t.id}
-              onChange={handleInputCheck}
+              onChange={(e)=>handleInputCheck(e)}
             />
           </p>
         ))}
