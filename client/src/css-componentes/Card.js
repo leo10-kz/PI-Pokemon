@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Card = styled.div`
 width: 310px;
@@ -31,6 +32,7 @@ text-align: center;
      margin: 0;
      color: black;
  }
+
 
 `;
 
@@ -67,5 +69,10 @@ export const Image = styled.div`
       
   }
   
-  
+`;
+
+export const Links = styled(Link)`
+text-decoration: none;
+
+
 `;

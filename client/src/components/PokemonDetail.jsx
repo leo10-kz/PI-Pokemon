@@ -40,7 +40,7 @@ console.log(types);
             <span style={{width: pokeId.fuerza}}>FUERZA:{pokeId.fuerza}</span>
           </div>
           <div className="progreso amarillo">
-            <span style={{width:+ pokeId.defenza}}>DEFENZA:{pokeId.defenza}</span>
+            <span style={{width:+ pokeId.defenza}}>DEFENSA:{pokeId.defenza}</span>
           </div>
           <div className="progreso verde">
             <span style={{width:pokeId.velocidad}}>VELOCIDAD:{pokeId.velocidad}</span>

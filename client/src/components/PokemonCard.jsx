@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Title, Pie, Image } from "../css-componentes/Card";
-import { Links } from "../css-componentes/Compartidos";
+import { Links } from "../css-componentes/Card";
 
 
 const PokemonCard = ({ id, name, image, types, fuerza }) => {

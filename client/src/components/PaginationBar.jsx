@@ -35,7 +35,7 @@ const PaginationBar = () => {
    <Pag>
      {current > 0 && <NextPrev onClick={prev}><LeftCircleOutlined /></NextPrev>}  
      {pages.map((p,i)  => {
-       return(<Boton varian={i} onClick={() => onClick(i)} key={i}>{i+1}</Boton>)
+       return(<Boton  onClick={() => onClick(i)} key={i}>{i+1}</Boton>)
       })}
   {current < pages.length-1 && <NextPrev onClick={next}><RightCircleOutlined /></NextPrev>}
    </Pag>

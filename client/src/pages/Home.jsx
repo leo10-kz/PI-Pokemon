@@ -22,7 +22,7 @@ const Home = () => {
         {pages.length ? <Direccion /> : null}
         <Principal>
           <PaginationBar />
-        {poke !== null ? <Pokemons />: <NotFound />}
+        {poke !== 0 ? <Pokemons />: <NotFound />}
         </Principal>
       </div>
     </Contenedor>
