@@ -10,10 +10,10 @@ import './App.css';
 
 function App() {
  
-  const dispatch = useDispatch();
   //en mi  use effect creo una funcion asyncrona 
   //para poder depachar primero get pokemons y que luego de que se cumpla mi   primera promeza 
   // se ejecute mi armado  de paginas
+  const dispatch =useDispatch();
 
   useEffect(() =>{
     let dispachar = async () =>{

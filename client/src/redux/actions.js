@@ -66,11 +66,10 @@ export const filter_type = (arg) =>{
 
 export const get_pokemons_name = (name) => async(dispatch) =>{
 
-  try {
-     var rest = await axios.get(`/pokemons?name=${name}`)
-     
-  } catch (error) {
-     console.log(error);
+  try{
+     var rest = await axios.get(`/pokemons?name=${name}`) 
+  }catch(error){
+    console.log(error);
   }finally{
      if (rest) {
       return dispatch({type:GET_POKEMONS_NAME, payload:rest.data})

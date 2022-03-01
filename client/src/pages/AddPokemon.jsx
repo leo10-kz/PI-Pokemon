@@ -158,7 +158,7 @@ const AddPokemon = () => {
         />
         {inputs.fuerza.length && errors.fuerza ? <p>{errors.fuerza}</p>:null}
         <br />
-        <label htmlFor="defenza">Defenza</label>
+        <label htmlFor="defenza">Defensa</label>
         <input
           type="number"
           name="defenza"
