@@ -4,7 +4,6 @@ import { Links } from "../css-componentes/Compartidos";
 
 
 const PokemonCard = ({ id, name, image, types, fuerza }) => {
-  console.log(image);
 
   return (
     <Card>

@@ -32,7 +32,7 @@ const click3 = (e) =>{
   
     <Main>
       <select name="orderName" onChange={(e) => click(e)}>
-          <option hidden selected>Ordenamientos</option>
+          
           <option value="all">All</option>
           <option value="ascendente">A-Z</option>
           <option value="descendente">Z-A</option>
@@ -41,14 +41,14 @@ const click3 = (e) =>{
       </select>
       
        
-      <select name="orderTipos" onChange={(e) => click2(e)}>
-        <option hidden selected>Tipos</option>
+      <select name="orderTipos"  onChange={(e) => click2(e)}>
+        
         <option value="all">All</option>
         {tipos.map((t, i) => (<option key={i}>{t.name}</option>))}
       </select>
 
       <select name="orderCreate" onChange={(e) => click3(e)}>
-          <option hidden selected>Api / BD</option>
+          
           <option value="all">All</option>
           <option value="existe">Api</option>
           <option value="creado">Data Base</option>

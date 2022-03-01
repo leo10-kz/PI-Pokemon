@@ -66,7 +66,7 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
         tipoName: action.payload,
-        pokemonsOrder: filtro.length ? filtro : undefined
+        pokemonsOrder: filtro.length ? filtro : null 
       };
 
     

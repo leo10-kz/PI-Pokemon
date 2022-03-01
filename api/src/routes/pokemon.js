@@ -141,11 +141,12 @@ router.get('/', async (req,res,next)=>{
 router.post("/", async (req, res) => {
   const { name, vida, fuerza, defenza, velocidad, altura, peso, types, image } =
     req.body;
+   
 
     try {
       if (!image) {
         let pokedex = await Pokemon.create({
-          name: name,
+          name: name.toLowerCase(),
           vida: +vida,
           fuerza: +fuerza,
           defenza: +defenza,
@@ -158,7 +159,7 @@ router.post("/", async (req, res) => {
       return res.status(200).send('pokemon creado');
       }else{
       let pokedex = await Pokemon.create({
-        name: name,
+        name: name.toLowerCase(),
         vida: +vida,
         fuerza: +fuerza,
         defenza: +defenza,
