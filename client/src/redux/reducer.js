@@ -76,7 +76,7 @@ const rootReducer = (state = intialState, action) => {
 
       return {
         ...state,
-        pokemonsOrder: action.payload === 'all' ? diferent : filter.length && filter,
+        pokemonsOrder: action.payload === 'all' ? diferent : filter.length ? filter : null,
       };
 
     case ORDERING:
