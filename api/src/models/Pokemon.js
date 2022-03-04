@@ -30,10 +30,10 @@ module.exports = (sequelize) => {
       type:DataTypes.INTEGER
     },
     altura:{
-      type:DataTypes.DECIMAL
+      type:DataTypes.INTEGER
     },
     peso:{
-      type:DataTypes.DECIMAL
+      type:DataTypes.INTEGER
     }
 
 

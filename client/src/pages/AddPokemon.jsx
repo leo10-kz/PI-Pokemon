@@ -17,18 +17,13 @@ const AddPokemon = () => {
   const validation = (inputs) => {
    let errors = {};
    let reg = /^[a-zA-Z\s]*$/; 
+   
 
     if (!inputs.name) {
       errors.name = "Este campo es obligatorio";
-    }
-    
-     if(pokemons.indexOf(inputs.name) !== -1){
+    }else if(pokemons.indexOf(inputs.name) !== -1){
        errors.name = 'Ya existe un Pokemon con este nombre';
-     }
-
-     
-
-     if (!reg.test(inputs.name)) {
+     }else if (!reg.test(inputs.name)) {
        errors.name = 'No se  permiten numeros ni caracteres'
      }
 
@@ -55,7 +50,14 @@ const AddPokemon = () => {
      if (inputs.altura < 1 || inputs.altura > 80) {
        errors.altura = 'Sus valore de altura deben ir de 1 a 80'
      }
-
+     
+     if(inputs.types.length === 0){
+       errors.types = 'Su pokemon debe tener  tipo '
+      }else if(inputs.types.length > 2 ){
+       console.log(inputs.types.length);
+     errors.types = 'Solo puede tener 2 tipos'
+     }
+    
 
       return errors
   };
@@ -89,20 +91,30 @@ const AddPokemon = () => {
     if (e.target.checked === true) {
       inputs.types.push(e.target.value);
       setInputs({ ...inputs });
-      console.log(e.target.checked);
+      
+      setErrors(validation({
+        ...inputs,
+        [e.target.name]: e.target.value,
+      }))
     } else {
       setInputs({
         ...inputs,
         types: inputs.types.filter((t) => t !== e.target.value),
       });
+      setErrors(validation({
+        ...inputs,
+        //[e.target.name]: e.target.value,
+        types:inputs.types.filter((t) => t !== e.target.value),
+      }))
     }
   };
 
   const submit = async (e) => {
     e.preventDefault();
    await dispatch(add_pokemons(inputs));
+  
    
-   setInputs({
+    setInputs({
      name: "",
      vida: 0,
      fuerza: 0,
@@ -111,16 +123,21 @@ const AddPokemon = () => {
      altura: 0,
      peso: 0,
      types:[] ,
-    }) 
+    });
+
+    e.target.reset();
+
    await dispatch(get_pokemons())
     dispatch(get_pages())
     
   };
+  
 
   const buttonSubmit = useMemo(() => {
-    if(errors.name || inputs.name.length === 0 ) return true;
+    if(( !inputs.name.length  ) 
+     || ( !inputs.types.length)  || (Object.keys(errors).length !== 0) ) return true;
     return false;
-  },[errors, inputs.name])
+  },[errors, inputs])
 
 
 
@@ -199,7 +216,7 @@ const AddPokemon = () => {
         <div className="col">
         
         {tipos.map((t) => (
-          <p>
+          <p  key={t.id}>
             {t.name}
             <input
               key={t.id}
@@ -210,6 +227,7 @@ const AddPokemon = () => {
             />
           </p>
         ))}
+        {  errors.types && <p>{errors.types}</p>}
          </div>
         </Columna> 
         </Contenedor>

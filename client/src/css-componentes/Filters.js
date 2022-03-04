@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Main = styled.main`
+export const Main = styled.div`
 margin-top: 50px;
 select{
     text-align: center;

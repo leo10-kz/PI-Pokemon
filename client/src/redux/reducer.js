@@ -4,12 +4,13 @@ import {
   GET_PAGES,
   SET_CURRENT,
   GET_TYPES,
-  FILTER_TYPE,
+  //FILTER_TYPE,
   GET_POKEMONS_NAME,
-  ORDER_CREATE_BY,
+  //ORDER_CREATE_BY,
   ADD_POKEMONS,
   PAGE_NAME,
   ORDERING,
+  FILTRAR_TODO
 } from "./actions";
 
 const intialState = {
@@ -51,6 +52,7 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
         pokemonsOrder: all,
+        current:0
       };
 
     case GET_TYPES:
@@ -59,10 +61,13 @@ const rootReducer = (state = intialState, action) => {
         pokeTypes: action.payload,
       };
 
-    case FILTER_TYPE:
-      let tiposPo = [...state.pokemons];
+  /*   case FILTER_TYPE:
+      let tiposPo = state.pokemons;
+    
+      let filtro
       //let filtro = tiposPo.filter((poke) =>poke.types.includes(action.payload));
-      let filtro = action.payload === 'all' ? tiposPo : tiposPo.filter(p => p.types.includes(action.payload))
+        filtro = action.payload === 'all' ? tiposPo : tiposPo.filter(p => p.types.includes(action.payload))  
+      
       return {
         ...state,
         tipoName: action.payload,
@@ -72,14 +77,27 @@ const rootReducer = (state = intialState, action) => {
 
     
     case ORDER_CREATE_BY:
-    let diferent = [...state.pokemons]
-    let filter = diferent.filter((po) => action.payload === "creado"? po.id.length > 5: typeof po.id === "number" );
+    let diferent = state.pokemons
+    let filter = diferent.filter((po) => action.payload === "creado"? po.id.length > 5: typeof po.id === "number");
 
+    
       return {
         ...state,
         pokemonsOrder: action.payload === 'all' ? diferent : filter.length ? filter : 0,
         current:0
-      };
+      }; */
+
+    case FILTRAR_TODO:
+     
+    let filtrado = state.pokemons;
+    let tipo =  action.payload.tipo === 'all' ? filtrado : filtrado.filter(p => p.types.includes(action.payload.tipo)); 
+     let origen =  action.payload.origen === "creado"? tipo.filter(p => p.id.length > 5): tipo.filter(p => typeof p.id === 'number');
+     
+    return{
+      ...state,
+      pokemonsOrder: action.payload.origen === 'all' ? tipo.length? tipo:  0 : origen.length ? origen : 0,
+      current:0,
+    }
 
     case ORDERING:
         let orderPokemons;
@@ -155,7 +173,6 @@ const rootReducer = (state = intialState, action) => {
     case ADD_POKEMONS:
       return {
         ...state,
-       // pokemonsOrder: [...state.pokemonsOrder, action.payload],
       };
 
     case GET_PAGES:

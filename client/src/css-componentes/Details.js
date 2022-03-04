@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Conteiner = styled.body`
+export const Conteiner = styled.div`
 display: flex;
 min-width: 100vh;
 background-image: linear-gradient( #e63946 85px, #f1faee 20px);

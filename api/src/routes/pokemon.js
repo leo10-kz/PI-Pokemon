@@ -43,21 +43,7 @@ const router = Router();
   }
   let datosPoke = [...arrDb,...arr]
   if(name){
-    //res.json(datosPoke.filter(po =>po.name === name))
-    const pokeName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-    let datos = {
-      id: pokeName.data.id,
-      name: pokeName.data.name,
-      image: pokeName.data.sprites.other.dream_world.front_default,
-      types: pokeName.data.types.map((t) => t.type.name),
-      fuerza: pokeName.data.stats[1].base_stat,
-    }
-     if (datos) {
-       return res.status(200).send([datos]);
-     }else{
-       const pokeNamedb = pokebd.filter(po => po.name === name );
-       return pokeNamedb.length ? res.status(200).send([pokeNamedb]) : res.status(400).send('Pokemon not found');
-     }
+    res.json(datosPoke.filter(po =>po.name === name))
      
   }else{
        res.json(datosPoke)
@@ -147,12 +133,12 @@ router.post("/", async (req, res) => {
       if (!image) {
         let pokedex = await Pokemon.create({
           name: name.toLowerCase(),
-          vida: +vida,
-          fuerza: +fuerza,
-          defenza: +defenza,
-          velocidad: +velocidad,
-          altura: +altura,
-          peso: +peso,
+          vida: vida,
+          fuerza: fuerza,
+          defenza: defenza,
+          velocidad: velocidad,
+          altura: altura,
+          peso: peso,
           image:"https://i.pinimg.com/originals/19/9c/60/199c60ed816a26a988ec57b66c1be828.png"
         });
         await pokedex.addType(types);

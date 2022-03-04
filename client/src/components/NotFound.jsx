@@ -2,14 +2,13 @@ import React from 'react'
 import { Wavo } from '../css-componentes/NotFound'
 import Not from '../assets/wobbuffet-pokemon.gif'
 import { useDispatch } from 'react-redux'
-import { get_pages, get_pokemons, page_name } from '../redux/actions'
+import { get_pages, page_name } from '../redux/actions'
 
 
 const NotFound = () => {
  const dispatch = useDispatch()
 
 const click = async ()=>{
-  await dispatch(get_pokemons)
   dispatch(page_name())
   dispatch(get_pages())
 }

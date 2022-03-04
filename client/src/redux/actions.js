@@ -11,6 +11,7 @@ export const ORDER_CREATE_BY = 'order_create_by';
 export const ADD_POKEMONS = 'add_pokemons';
 export const PAGE_NAME = 'page_name'
 export const ORDERING = 'ordering'
+export const FILTRAR_TODO = 'filtrar_todo'
 
 export const get_pokemons = () => async (dispatch) =>{
 
@@ -61,27 +62,28 @@ export const ordering = (valor) =>{
 
 
 export const filter_type = (arg) =>{
-   return {type:FILTER_TYPE, payload:arg}
+   return {type:FILTRAR_TODO, payload:arg}
 }
 
 export const get_pokemons_name = (name) => async(dispatch) =>{
 
   try{
      var rest = await axios.get(`/pokemons?name=${name}`) 
+    
   }catch(error){
     console.log(error);
-  }finally{
+  } finally{
      if (rest) {
       return dispatch({type:GET_POKEMONS_NAME, payload:rest.data})
      }else{
-        return alert('Pokemon not found')
+        return alert('Pokemon no encontrado')
      }
-  }
+  } 
 
 }
 
 export const order_create_by = (arg) =>{
-   return ({type:ORDER_CREATE_BY, payload: arg})
+   return ({type:FILTRAR_TODO, payload: arg})
 }
 
 export const add_pokemons = (pokemon) =>async (dispatch) => {
