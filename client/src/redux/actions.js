@@ -11,7 +11,8 @@ export const ORDER_CREATE_BY = 'order_create_by';
 export const ADD_POKEMONS = 'add_pokemons';
 export const PAGE_NAME = 'page_name'
 export const ORDERING = 'ordering'
-export const FILTRAR_TODO = 'filtrar_todo'
+export const FILTRAR_TODO = 'filtrar_todo';
+export const LIMPIAR_DETALLE = 'limpiar_detalle';
 
 export const get_pokemons = () => async (dispatch) =>{
 
@@ -105,6 +106,10 @@ export const add_pokemons = (pokemon) =>async (dispatch) => {
 }
 export const page_name = (arg) =>{
    return({type:PAGE_NAME, payload:arg})
+}
+
+export const limpiar_detalle = () =>{
+   return ({ type:LIMPIAR_DETALLE });
 }
 
 

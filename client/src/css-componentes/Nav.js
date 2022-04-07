@@ -21,10 +21,10 @@ position:relative;
 left: 80px;
 cursor: pointer;
 font-size: 15px;
-padding: 4px 4px;
+padding: 6px 6px;
 background: linear-gradient( #e63946 9px, #f1faee 20px);
-border: 2px solid black;
-border-radius: 22rem 22rem;
+border: 1px black;
+border-radius: 50%;
 color: #f1faee;
 transition:all 1s;
  :hover{

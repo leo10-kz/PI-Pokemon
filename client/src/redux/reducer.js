@@ -10,7 +10,8 @@ import {
   ADD_POKEMONS,
   PAGE_NAME,
   ORDERING,
-  FILTRAR_TODO
+  FILTRAR_TODO,
+  LIMPIAR_DETALLE
 } from "./actions";
 
 const intialState = {
@@ -196,6 +197,12 @@ const rootReducer = (state = intialState, action) => {
         current: action.payload,
       };
 
+
+    case LIMPIAR_DETALLE:
+      return{
+        ...state,
+        pokemonId:{}
+      }  
     default:
       return state;
   }

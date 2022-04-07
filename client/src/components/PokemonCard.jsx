@@ -5,22 +5,29 @@ import { Links } from "../css-componentes/Card";
 
 const PokemonCard = ({ id, name, image, types, fuerza }) => {
 
+  let sprite;
+    if(id >= 1 && id <= 100){
+        sprite = true
+    }
+
   return (
-    <Card>
+    <Card >
 
         <Links to={`/pokemon/${id}`}>
       <Title>
           <h2>{name}</h2>
       </Title>
     <Image> 
-      
-      <img src={image} alt="" />
+      { sprite ?
+      <img src={`images/sprites/${id}.gif`} alt="not" />
+      : <img src={image} alt="not found" />
+      }
     </Image>
       <Pie>
         <div>
           <p>Tipo:</p>
-           {types.map((t, i) => {
-            return <p key={i} className="tipo">{t}</p>;
+           {types.map((t) => {
+            return <img src={`images/types/${t}.png`} alt="Types" height="50px" key={t} />
           })}
         </div>
         <div>

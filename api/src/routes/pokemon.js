@@ -67,6 +67,7 @@ router.get('/', async (req,res,next)=>{
         id: pokeApi.data.id,
         name: pokeApi.data.name,
         image: pokeApi.data.sprites.other.dream_world.front_default,
+        //image: po.data.sprites.other['official-artwork'].front_default,
         types: pokeApi.data.types.map((t) => t.type.name),
         fuerza: pokeApi.data.stats[1].base_stat,
        }
@@ -99,17 +100,19 @@ router.get('/', async (req,res,next)=>{
       }
     }); 
     
-    const todoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${Math.ceil(Math.random()*(300 - 0)+0)}&limit=40%22`);
+    const todoApi = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=100`);
     let pokeUrl = todoApi.data.results.map(u =>{
       return axios.get(u.url);
     });
 
     const resultado = await Promise.all(pokeUrl);
     const pokemones = resultado.map(po =>{
+     
      return{
       id: po.data.id,
       name: po.data.name,
-      image: po.data.sprites.other.dream_world.front_default,
+      //image: po.data.sprites.other.dream_world.front_default,
+      image: po.data.sprites.other['official-artwork'].front_default,
       types: po.data.types.map((t) => t.type.name),
       fuerza: po.data.stats[1].base_stat,
      }

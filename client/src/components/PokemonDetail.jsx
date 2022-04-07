@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { get_pokemons_id } from "../redux/actions";
+import { get_pokemons_id, limpiar_detalle } from "../redux/actions";
 import { Conteiner, Detalles, Estadisticas, Linkshome } from "../css-componentes/Details";
 
 
@@ -14,6 +14,8 @@ const PokemonDetail = () => {
 
   useEffect(() => {
     dispatch(get_pokemons_id(id));
+
+    return () =>{ dispatch(limpiar_detalle())}
   }, [dispatch, id]);
 console.log(types);
   return (

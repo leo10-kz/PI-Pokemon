@@ -5,7 +5,7 @@ export const Card = styled.div`
 width: 310px;
 height: 430px;
 overflow: hidden;
-border: 3px solid ;
+border: 2px solid ;
 border-radius: 15px;
 margin:20px;
 text-align: center;
@@ -14,18 +14,20 @@ text-align: center;
  p{
      font-size: 17px;
      color: black;
-     
+     font-weight: bold;
  }
  .tipo{
      background-color: #abc4ff;
      border-radius: 5px;
  }
  span{
+     font-weight: bold;
      font-size: 20px;
      color: black;
-     background-color:#e63946 ;
-     border: 1px solid;
+     //background-color:#e63946 ;
+     //border: 1px solid;
      border-radius: 5px;
+     
  }
 
  h2{

@@ -24,4 +24,24 @@ router.get('/', async (req, res, next) =>{
  }
 })
 
+/* router.post('/create', async (req, res, next) =>{
+ try {
+const { type } = req.body;
+let nuevo = await Types.create({ name: type});
+res.status(200).send(nuevo)
+    
+} catch (error) {
+   next(error);    
+}
+
+Types.create({ name: type})
+.then((nuevo) => {
+    res.status(200).send(nuevo)
+})
+.catch((error) => {
+    next(error);
+} )
+
+}) */
+
 module.exports = router;
